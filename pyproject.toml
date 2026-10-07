@@ -25,7 +25,6 @@ dependencies = ["reflex>=0.9.12"]
 
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Framework :: Reflex",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",

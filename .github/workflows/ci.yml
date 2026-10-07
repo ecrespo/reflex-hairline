@@ -70,6 +70,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+      - name: Validate PyPI classifiers
+        run: uv run --no-project --python 3.12 --with trove-classifiers python .github/check_classifiers.py
       - name: Build sdist + wheel
         run: uv build
       - name: twine check
