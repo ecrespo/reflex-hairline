@@ -218,3 +218,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Reflex
+.web/
+.states/
+assets/external/
+_to_delete/
+
+# IDE / build
+.idea/
+dist/
