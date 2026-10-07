@@ -193,8 +193,8 @@ uv run reflex component build    # .pyi stubs + sdist/wheel in dist/
 - `CI (code quality)`: ruff lint/format, pytest on Python 3.10–3.13, demo `reflex compile`, build + `twine check`.
 - `Security`: gitleaks, bandit, pip-audit, dependency review (PRs) and CodeQL; also weekly.
 - `Release`: push a tag `vX.Y.Z` matching `version` in `pyproject.toml`. It re-runs both suites, builds,
-  **pre-publishes to TestPyPI**, installs it back from there, then publishes to PyPI and creates the GitHub Release.
-  Pre-release versions (`X.Y.ZrcN`, `aN`, `bN`, `.devN`) stop after TestPyPI. Publishing uses PyPI Trusted Publishing (no tokens).
+  checks the tag is on `main`, publishes to PyPI, installs it back from PyPI and creates the GitHub Release.
+  Pre-release versions (`X.Y.ZrcN`, `aN`, `bN`, `.devN`) go to PyPI as pre-releases. Trusted Publishing, environment `pypi` (no tokens).
 
 ## Credits and license
 
