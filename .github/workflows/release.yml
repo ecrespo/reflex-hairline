@@ -103,13 +103,17 @@ jobs:
         run: |
           set -euo pipefail
           uv venv /tmp/env
+          # Only reflex-hairline comes from TestPyPI (--no-deps); its dependencies come from PyPI,
+          # so a look-alike package squatted on TestPyPI can never be installed.
           for _ in 1 2 3 4 5 6; do
-            uv pip install --python /tmp/env --no-cache \
-              --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ \
-              --index-strategy unsafe-best-match \
+            uv pip install --python /tmp/env --no-cache --no-deps \
+              --index-url https://test.pypi.org/simple/ \
               "reflex-hairline==${VERSION}" && break
             echo "not on the index yet, retrying in 20s"; sleep 20
           done
+          /tmp/env/bin/python -c "import importlib.metadata as m; print('\n'.join(r for r in (m.requires('reflex-hairline') or []) if 'extra ==' not in r))" > /tmp/deps.txt
+          cat /tmp/deps.txt
+          uv pip install --python /tmp/env --index-url https://pypi.org/simple/ -r /tmp/deps.txt
           /tmp/env/bin/python -c "import reflex_hairline as rh; assert len(rh.FIGURES) == 27; print('ok', rh.HAIRLINE_NPM)"
 
   pypi:
