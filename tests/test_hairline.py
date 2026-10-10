@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
+from importlib import import_module
 from pathlib import Path
 
 import pytest
 
-import reflex_hairline as rh
 from reflex_hairline import (
     BY_ID,
     FIGURE_CLASSES,
@@ -17,6 +17,8 @@ from reflex_hairline import (
     tokens,
 )
 
+# The package module, fetched by name so this file never mixes `import x` with `from x import`.
+rh = import_module("reflex_hairline")
 PKG = Path(rh.__file__).parent
 
 # The table in @lucasmarkes/hairline src/intensity.ts (v0.3.0): value at intensity 0, 0.5 and 1.
@@ -38,6 +40,20 @@ def test_catalogue_has_all_27_figures():
     assert len(set(FIGURE_IDS)) == 27
     assert set(FIGURE_IDS) == set(UPSTREAM_TABLE)
     assert set(BY_ID) == set(FIGURE_IDS)
+
+
+def test_catalogue_declares_its_public_api():
+    from reflex_hairline import catalogue
+
+    assert set(catalogue.__all__) == {"BY_ID", "FIGURES", "FIGURE_IDS", "FigureInfo"}
+
+
+def test_figure_id_literal_is_exported_and_matches_the_catalogue():
+    from typing import get_args
+
+    from reflex_hairline import FigureId
+
+    assert set(get_args(FigureId)) == set(FIGURE_IDS)
 
 
 @pytest.mark.parametrize("fid", sorted(UPSTREAM_TABLE))

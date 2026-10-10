@@ -10,6 +10,8 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
+__all__ = ["BY_ID", "FIGURES", "FIGURE_IDS", "FigureInfo"]
+
 
 @dataclass(frozen=True)
 class FigureInfo:

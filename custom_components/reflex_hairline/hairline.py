@@ -667,6 +667,7 @@ __all__ = [
     "Drawer",
     "Elevator",
     "Exploded",
+    "FigureId",
     "FigureInfo",
     "Hairline",
     "HairlineBase",
