@@ -87,7 +87,7 @@ jobs:
         run: |
           uv venv /tmp/wheel-env
           uv pip install --python /tmp/wheel-env dist/*.whl
-          /tmp/wheel-env/bin/python -c "import reflex_hairline as rh; assert len(rh.FIGURES) == 27; print(rh.hairline.terrain())"
+          /tmp/wheel-env/bin/python -c "import reflex_hairline as rh; assert len(rh.FIGURES) == 33; print(rh.hairline.terrain())"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: dist

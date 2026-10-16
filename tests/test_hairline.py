@@ -21,7 +21,7 @@ from reflex_hairline import (
 rh = import_module("reflex_hairline")
 PKG = Path(rh.__file__).parent
 
-# The table in @lucasmarkes/hairline src/intensity.ts (v0.3.0): value at intensity 0, 0.5 and 1.
+# The table in @lucasmarkes/hairline src/intensity.ts (v0.5.1): value at intensity 0, 0.5 and 1.
 UPSTREAM_TABLE = {
     "riffle": (0, 40, 90), "terrain": (1.5, 3, 5), "exploded": (12, 28, 40),
     "phosphor": (150, 520, 1500), "slow": (0.6, 0.2, 0.05), "turntable": (200, 650, 1500),
@@ -32,12 +32,14 @@ UPSTREAM_TABLE = {
     "router": (0.5, 1.5, 3), "loupe": (1.3, 1.8, 2.6), "sieve": (6, 14, 24),
     "rail": (1, 2, 3.5), "plug": (0.35, 0.6, 0.9), "query": (20, 40, 55),
     "drawer": (12, 22, 34), "basket": (8, 16, 28), "plot": (3, 6, 12),
+    "hub": (10, 16, 24), "relay": (40, 120, 220), "settle": (90, 120, 150),
+    "format": (9, 12, 14), "rebuild": (8, 14, 20), "stack": (22, 34, 46),
 }  # fmt: skip
 
 
-def test_catalogue_has_all_27_figures():
-    assert len(FIGURES) == 27
-    assert len(set(FIGURE_IDS)) == 27
+def test_catalogue_has_all_33_figures():
+    assert len(FIGURES) == 33
+    assert len(set(FIGURE_IDS)) == 33
     assert set(FIGURE_IDS) == set(UPSTREAM_TABLE)
     assert set(BY_ID) == set(FIGURE_IDS)
 
@@ -75,7 +77,7 @@ def test_every_figure_has_a_component_and_a_namespace_entry(fid):
 def test_figure_imports_from_react_entry_with_pinned_version():
     comp = hairline.terrain()
     imports = comp._get_all_imports()
-    assert HAIRLINE_NPM == "@lucasmarkes/hairline@0.3.0"
+    assert HAIRLINE_NPM == "@lucasmarkes/hairline@0.5.1"
     (var,) = imports[HAIRLINE_NPM]
     assert var.tag == "Terrain"
     assert var.package_path == "/react"
@@ -87,6 +89,11 @@ def test_props_render():
     assert "intensity:0.8" in props
     assert 'theme:"dark"' in props
     assert 'label:"A vault"' in props
+
+
+def test_play_prop_renders():
+    props = hairline.hub(play=True).render()["props"]
+    assert "play:true" in props
 
 
 def test_on_read_is_an_event_trigger():
