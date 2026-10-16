@@ -1,11 +1,11 @@
-"""Reflex wrapper for Hairline: twenty-seven isometric line figures that answer the pointer.
+"""Reflex wrapper for Hairline: thirty-three isometric line figures that answer the pointer.
 
 Hairline (https://hairline.lucasmarkes.com, MIT, by Lucas Marques) ships one
 React component per figure from ``@lucasmarkes/hairline/react``. This module
 wraps each of them as a Reflex component, and adds three things the React
 entry does not have:
 
-* ``figure(figure=...)``: any of the twenty-seven, picked by id at runtime, so a
+* ``figure(figure=...)``: any of the thirty-three, picked by id at runtime, so a
   state var can switch figures.
 * ``custom(src=...)``: a figure made with the ``hairline-create`` agent skill
   (a ``hairline-<name>.html`` page or its ``<name>.js`` file), mounted natively
@@ -15,7 +15,8 @@ entry does not have:
   properties for you.
 
 Every figure takes the same options: ``intensity`` (0..1, default 0.5),
-``theme`` (``"auto" | "light" | "dark"``), ``label`` (accessible name) and the
+``theme`` (``"auto" | "light" | "dark"``), ``label`` (accessible name),
+``play`` (walk the figure through its answer on its own, in a loop) and the
 ``on_read`` event, which receives the figure's caption each time it changes.
 """
 
@@ -29,7 +30,7 @@ from reflex.utils.imports import ImportVar
 
 from .catalogue import BY_ID, FIGURE_IDS, FIGURES, FigureInfo
 
-HAIRLINE_VERSION: str = "0.3.0"
+HAIRLINE_VERSION: str = "0.5.1"
 """The version of ``@lucasmarkes/hairline`` this package is built and tested against."""
 
 HAIRLINE_NPM: str = f"@lucasmarkes/hairline@{HAIRLINE_VERSION}"
@@ -39,7 +40,8 @@ FigureId = Literal[
     "riffle", "terrain", "exploded", "phosphor", "slow", "turntable", "keyboard",
     "elevator", "phone", "laptop", "terminal", "cabinet", "branches", "vault",
     "lockers", "padlock", "patch", "dish", "router", "loupe", "sieve", "rail",
-    "plug", "query", "drawer", "basket", "plot",
+    "plug", "query", "drawer", "basket", "plot", "hub", "relay", "settle",
+    "format", "rebuild", "stack",
 ]  # fmt: skip
 
 # --------------------------------------------------------------------------- #
@@ -176,6 +178,10 @@ class HairlineBase(rx.Component):
 
     # The accessible name. Each figure has a default English description.
     label: rx.Var[str]
+
+    # Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives;
+    # it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
+    play: rx.Var[bool]
 
     # The figure's caption each time it changes ("03", "gap 28.0", "rate 0.20×"); fired once at mount.
     on_read: rx.EventHandler[passthrough_event_spec(str)]
@@ -425,6 +431,48 @@ class Plot(HairlineBase):
     _figure_id = "plot"
 
 
+class Hub(HairlineBase):
+    """A hub and eight tiles. The tile under the pointer rises and its link turns solid. Higher intensity raises the tiles higher."""
+
+    tag = "Hub"
+    _figure_id = "hub"
+
+
+class Relay(HairlineBase):
+    """A hub and four branches of tiles. The path to the leaf under the pointer lights hop by hop. Higher intensity makes each hop wait longer."""
+
+    tag = "Relay"
+    _figure_id = "relay"
+
+
+class Settle(HairlineBase):
+    """Twelve crooked tiles round a hub slide into a tree as the pointer nears. Higher intensity starts the tree from further away."""
+
+    tag = "Settle"
+    _figure_id = "settle"
+
+
+class Format(HairlineBase):
+    """A file of ten crooked lines. The pointer runs the formatter down it; every line above snaps square. Higher intensity starts them more crooked."""
+
+    tag = "Format"
+    _figure_id = "format"
+
+
+class Rebuild(HairlineBase):
+    """A tree of packages. The one under the pointer rises, and its dependents rise after it. Higher intensity raises them higher."""
+
+    tag = "Rebuild"
+    _figure_id = "rebuild"
+
+
+class Stack(HairlineBase):
+    """A call stack of five frames. The pointer's height picks one; the frames above lift away. Higher intensity lifts them further."""
+
+    tag = "Stack"
+    _figure_id = "stack"
+
+
 FIGURE_CLASSES: dict[str, type[HairlineBase]] = {
     "riffle": Riffle, "terrain": Terrain, "exploded": Exploded, "phosphor": Phosphor,
     "slow": Slow, "turntable": Turntable, "keyboard": Keyboard, "elevator": Elevator,
@@ -432,7 +480,8 @@ FIGURE_CLASSES: dict[str, type[HairlineBase]] = {
     "branches": Branches, "vault": Vault, "lockers": Lockers, "padlock": Padlock,
     "patch": Patch, "dish": Dish, "router": Router, "loupe": Loupe, "sieve": Sieve,
     "rail": Rail, "plug": Plug, "query": Query, "drawer": Drawer, "basket": Basket,
-    "plot": Plot,
+    "plot": Plot, "hub": Hub, "relay": Relay, "settle": Settle, "format": Format,
+    "rebuild": Rebuild, "stack": Stack,
 }  # fmt: skip
 """Every packaged figure's component class, by id."""
 
@@ -467,7 +516,7 @@ class _WrapperComponent(HairlineBase):
 
 
 class HairlineFigure(_WrapperComponent):
-    """Any of the twenty-seven figures, chosen by id at runtime.
+    """Any of the thirty-three figures, chosen by id at runtime.
 
     Changing ``figure`` remounts the drawing. An unknown id falls back to
     ``fallback`` (``"terrain"`` by default).
@@ -491,6 +540,7 @@ class HairlineCustom(_WrapperComponent):
     ``code``. The figure runs on the same kernel the skill builds on, and takes
     the same ``intensity``, ``theme``, ``label`` and ``on_read`` as the
     packaged ones; ``intensity`` is mapped onto the figure's declared ``range``.
+    ``play`` is accepted but ignored here for now.
 
     The figure's code is executed in the page, so only load figures you trust.
     """
@@ -598,6 +648,12 @@ class Hairline(rx.ComponentNamespace):
     drawer = staticmethod(Drawer.create)
     basket = staticmethod(Basket.create)
     plot = staticmethod(Plot.create)
+    hub = staticmethod(Hub.create)
+    relay = staticmethod(Relay.create)
+    settle = staticmethod(Settle.create)
+    format = staticmethod(Format.create)
+    rebuild = staticmethod(Rebuild.create)
+    stack = staticmethod(Stack.create)
 
     figure = staticmethod(HairlineFigure.create)
     custom = staticmethod(HairlineCustom.create)
@@ -645,6 +701,12 @@ query = Query.create
 drawer = Drawer.create
 basket = Basket.create
 plot = Plot.create
+hub = Hub.create
+relay = Relay.create
+settle = Settle.create
+format = Format.create
+rebuild = Rebuild.create
+stack = Stack.create
 figure = HairlineFigure.create
 custom = HairlineCustom.create
 
@@ -669,10 +731,12 @@ __all__ = [
     "Exploded",
     "FigureId",
     "FigureInfo",
+    "Format",
     "Hairline",
     "HairlineBase",
     "HairlineCustom",
     "HairlineFigure",
+    "Hub",
     "Keyboard",
     "Laptop",
     "Lockers",
@@ -685,10 +749,14 @@ __all__ = [
     "Plug",
     "Query",
     "Rail",
+    "Rebuild",
+    "Relay",
     "Riffle",
     "Router",
+    "Settle",
     "Sieve",
     "Slow",
+    "Stack",
     "Terminal",
     "Terrain",
     "Turntable",
@@ -703,7 +771,9 @@ __all__ = [
     "empty_state",
     "exploded",
     "figure",
+    "format",
     "hairline",
+    "hub",
     "keyboard",
     "laptop",
     "lockers",
@@ -716,10 +786,14 @@ __all__ = [
     "plug",
     "query",
     "rail",
+    "rebuild",
+    "relay",
     "riffle",
     "router",
+    "settle",
     "sieve",
     "slow",
+    "stack",
     "terminal",
     "terrain",
     "tokens",

@@ -5,7 +5,7 @@
     "": {
       "name": "reflex",
       "dependencies": {
-        "@lucasmarkes/hairline": "0.3.0",
+        "@lucasmarkes/hairline": "0.5.1",
         "@radix-ui/themes": "3.3.0",
         "@react-router/node": "8.4.0",
         "isbot": "5.2.2",
@@ -108,7 +108,7 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@lucasmarkes/hairline": ["@lucasmarkes/hairline@0.3.0", "", { "peerDependencies": { "react": ">=18" }, "optionalPeers": ["react"] }, "sha512-BFaBv/T+0lhr9YudW/s/BTY1dVGPqXbWB3kt0zza6HplV/KMMoghejqb6q2njGBXFeyXgMZMuVtGYfJJAgDj0g=="],
+    "@lucasmarkes/hairline": ["@lucasmarkes/hairline@0.5.1", "", { "peerDependencies": { "react": ">=18" }, "optionalPeers": ["react"] }, "sha512-zjY3bdMC3As/+enKitZ1X+D1HjpesQiAKzG1sbCFsOrb5xIuJEoepkJTBIO4jmFh6JXOQlGGylhV71nr9ipNpQ=="],
 
     "@oxc-project/types": ["@oxc-project/types@0.153.0", "", {}, "sha512-jSNrRIyvPVLL5E1z/tS5zLAprosGz/FuI1PWwEOz59j3E4TTTzSpqKb/RDGqJhhW0QHYISGXxq582wGx6T11Tw=="],
 

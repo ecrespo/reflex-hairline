@@ -110,7 +110,7 @@ jobs:
             uv pip install --python /tmp/env --no-cache "reflex-hairline==${VERSION}" && break
             echo "not on the index yet, retrying in 20s"; sleep 20
           done
-          /tmp/env/bin/python -c "import reflex_hairline as rh; assert len(rh.FIGURES) == 27; print('ok', rh.HAIRLINE_NPM)"
+          /tmp/env/bin/python -c "import reflex_hairline as rh; assert len(rh.FIGURES) == 33; print('ok', rh.HAIRLINE_NPM)"
 
   github-release:
     name: GitHub Release

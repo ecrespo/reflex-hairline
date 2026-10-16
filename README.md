@@ -1,8 +1,8 @@
 # reflex-hairline
 
-[Hairline](https://hairline.lucasmarkes.com)'s twenty-seven isometric line figures that answer the pointer, as [Reflex](https://reflex.dev) components.
+[Hairline](https://hairline.lucasmarkes.com)'s thirty-three isometric line figures that answer the pointer, as [Reflex](https://reflex.dev) components.
 
-Each figure is an SVG drawing that reacts to the mouse: pillars rise around it, a vault dial turns, a drawer slides out. They are useful as hero art, as section illustrations and, at 160–240px, as **empty states**. This package wraps `@lucasmarkes/hairline` v0.3.0 (MIT, by Lucas Marques) and adds a few things the React entry does not have: figures picked by a state var, figures made with the `hairline-create` agent skill, and theming from Python.
+Each figure is an SVG drawing that reacts to the mouse: pillars rise around it, a vault dial turns, a drawer slides out. They are useful as hero art, as section illustrations and, at 160–240px, as **empty states**. This package wraps `@lucasmarkes/hairline` v0.5.1 (MIT, by Lucas Marques) and adds a few things the React entry does not have: figures picked by a state var, figures made with the `hairline-create` agent skill, and theming from Python.
 
 ```bash
 pip install reflex-hairline
@@ -10,7 +10,7 @@ pip install reflex-hairline
 uv add reflex-hairline
 ```
 
-Reflex installs the npm package (`@lucasmarkes/hairline@0.3.0`) on the next `reflex run`; there is nothing else to set up.
+Reflex installs the npm package (`@lucasmarkes/hairline@0.5.1`) on the next `reflex run`; there is nothing else to set up.
 
 ## Quick start
 
@@ -48,7 +48,7 @@ A figure renders one `<div>` that fills its parent's width at a **5:4 aspect rat
 
 ## The figures
 
-All 27 are available three ways: `hairline.<id>(...)`, a snake_case factory (`from reflex_hairline import terrain`) and a component class (`Terrain.create(...)`).
+All 33 are available three ways: `hairline.<id>(...)`, a snake_case factory (`from reflex_hairline import terrain`) and a component class (`Terrain.create(...)`).
 
 | id | What it is | Higher `intensity` |
 | --- | --- | --- |
@@ -79,6 +79,12 @@ All 27 are available three ways: `hairline.<id>(...)`, a snake_case factory (`fr
 | `drawer` | A cabinet of three drawers. The pointer's height opens one, empty. | The drawer opens further. |
 | `basket` | A wire basket that tilts toward the pointer. | The basket tilts further. |
 | `plot` | A bar chart with no data: seven flat tabs. | The tabs lift higher. |
+| `hub` | A hub and eight tiles. The tile under the pointer rises; its link turns solid. | The tiles rise higher. |
+| `relay` | A hub with four branches. The path to the leaf under the pointer lights hop by hop. | Each hop waits longer. |
+| `settle` | Twelve crooked tiles round a hub slide into a tree as the pointer nears. | The tree forms from further away. |
+| `format` | A file of ten crooked lines. The pointer runs the formatter down it. | The lines start more crooked. |
+| `rebuild` | A tree of packages. The one touched rises, then everything that depends on it. | The packages rise higher. |
+| `stack` | A call stack of five frames. The pointer's height opens one. | The frames above lift further. |
 
 The same data is available in Python as `FIGURES` / `BY_ID` (`FigureInfo` with `name`, `summary`, `stronger`, default `label`, `rest` caption, and the internal `parameter`, `unit` and `range` that `intensity` maps onto).
 
@@ -89,6 +95,7 @@ The same data is available in Python as `FIGURES` / `BY_ID` (`FigureInfo` with `
 | `intensity` | `float` | `0.5` | How strongly the figure answers the pointer, 0…1. Out-of-range values are clamped. Reaches the running figure without a remount. |
 | `theme` | `"auto" \| "light" \| "dark"` | `"auto"` | `"auto"` follows the page: an ancestor with class `dark` (Reflex's color mode sets it) or `data-theme="dark"`, then `color-scheme`. |
 | `label` | `str` | an English description | The accessible name. `aria_label=` works too. |
+| `play` | `bool` | `False` | Walks the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Rests under `prefers-reduced-motion`. Not yet supported by `hairline.custom`. |
 | `on_read` | event `(str)` | | The caption each time it changes: `"03"`, `"gap 28.0"`, `"rate 0.20×"`. Fired once at mount with the rest caption. |
 
 All props accept state vars.
@@ -164,7 +171,7 @@ hairline.custom(
 ## Notes
 
 - **Accessibility.** A figure is an image (`role="img"`) with a description you can replace with `label`. Riffle is a focusable group whose arrow keys walk the cards.
-- **Reduced motion.** With `prefers-reduced-motion`, Phosphor and Slow hold still; every figure still answers the pointer.
+- **Reduced motion.** With `prefers-reduced-motion`, Phosphor and Slow hold still and a figure given `play` rests; every figure still answers the pointer.
 - **Performance.** All figures on a page share one `requestAnimationFrame` loop; a figure off screen or at rest does no work.
 - **SSR.** On the server a figure is an empty 5:4 box, so nothing shifts when it draws.
 
@@ -178,7 +185,7 @@ cd hairline_demo
 uv run reflex run
 ```
 
-Pages: Gallery (all 27 with live `on_read` captions), Playground (every option and generated code), Theming, Empty states, Skill figures, and an API Reference.
+Pages: Gallery (all 33 with live `on_read` captions), Playground (every option and generated code), Theming, Empty states, Skill figures, and an API Reference.
 
 ## Development
 

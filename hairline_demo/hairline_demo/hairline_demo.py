@@ -228,7 +228,7 @@ def gallery() -> rx.Component:
             columns=rx.breakpoints(initial="1", sm="2", lg="3"),
             spacing="6",
         ),
-        title="Twenty-seven isometric line figures that answer the pointer",
+        title="Thirty-three isometric line figures that answer the pointer",
         lede=(
             "Hairline's figures as Reflex components. Move the pointer over any of them. "
             "The slider in the bar sets intensity for all of them, the switch sets the theme, "

@@ -1,6 +1,6 @@
 """The catalogue of Hairline figures: names, copy and the intensity map.
 
-Generated from @lucasmarkes/hairline 0.3.0 (packages/hairline/src/index.ts and
+Generated from @lucasmarkes/hairline 0.5.1 (packages/hairline/src/index.ts and
 src/intensity.ts) and the site's apps/site/lib/figures.ts. Keep it in sync when
 the npm package adds figures.
 """
@@ -347,6 +347,72 @@ FIGURES: tuple[FigureInfo, ...] = (
         parameter="lift",
         unit="viewBox units",
         range=(3.0, 6.0, 12.0),
+    ),
+    FigureInfo(
+        id="hub",
+        name="Hub",
+        summary="A hub and eight tiles around it on dashed links. The tile under the pointer rises and its link turns solid; its neighbours rise less.",
+        stronger="The tiles rise higher.",
+        label="A hub and eight tiles on a grid: the tile under the pointer rises and its link turns solid; its neighbours rise less.",
+        rest="rest",
+        parameter="rise",
+        unit="viewBox units",
+        range=(10.0, 16.0, 24.0),
+    ),
+    FigureInfo(
+        id="relay",
+        name="Relay",
+        summary="A hub with four branches of tiles. The path to the leaf under the pointer lights hop by hop, each tile rising in turn.",
+        stronger="Each hop waits longer.",
+        label="A hub and four branches of tiles: the path to the leaf under the pointer lights hop by hop, each tile rising in turn.",
+        rest="rest",
+        parameter="delay",
+        unit="ms per hop",
+        range=(40.0, 120.0, 220.0),
+    ),
+    FigureInfo(
+        id="settle",
+        name="Settle",
+        summary="Twelve tiles lie crooked round a hub. As the pointer nears it, they slide into a tree and the links draw in.",
+        stronger="The tree forms from further away.",
+        label="Twelve tiles lie crooked round a hub; as the pointer nears it they slide into a tree and the links draw in.",
+        rest="rest",
+        parameter="reach",
+        unit="viewBox units",
+        range=(90.0, 120.0, 150.0),
+    ),
+    FigureInfo(
+        id="format",
+        name="Format",
+        summary="A file of ten crooked lines. The pointer runs the formatter down it, and every line above snaps square to its indent.",
+        stronger="The lines start more crooked.",
+        label="A file of ten crooked lines: the pointer runs the formatter down it, and every line above snaps square to its indent.",
+        rest="rest",
+        parameter="disorder",
+        unit="degrees",
+        range=(9.0, 12.0, 14.0),
+    ),
+    FigureInfo(
+        id="rebuild",
+        name="Rebuild",
+        summary="A tree of packages. The one under the pointer rises, and every package that depends on it rises after it along the links.",
+        stronger="The packages rise higher.",
+        label="A tree of package tiles: the one touched rises, and every package that depends on it rises after it along the links.",
+        rest="rest",
+        parameter="rise",
+        unit="viewBox units",
+        range=(8.0, 14.0, 20.0),
+    ),
+    FigureInfo(
+        id="stack",
+        name="Stack",
+        summary="A call stack of five frames. The pointer's height picks one, and the frames above lift away to open it.",
+        stronger="The frames above lift further.",
+        label="A call stack of five frames: the pointer's height picks one, and the frames above lift away to open it.",
+        rest="rest",
+        parameter="lift",
+        unit="viewBox units",
+        range=(22.0, 34.0, 46.0),
     ),
 )
 

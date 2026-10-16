@@ -1,8 +1,8 @@
 /*
  * reflex-hairline: the two React components the Python package needs beyond
- * the twenty-seven that @lucasmarkes/hairline/react already exports.
+ * the thirty-three that @lucasmarkes/hairline/react already exports.
  *
- *   HairlineFigure  picks one of the twenty-seven by name at runtime, so a
+ *   HairlineFigure  picks one of the thirty-three by name at runtime, so a
  *                   Reflex state var can switch figures.
  *   HairlineCustom  mounts a figure made with the hairline-create skill: a
  *                   `hairline-<name>.html` page or its `<name>.js` figure file.
@@ -127,6 +127,8 @@ export function HairlineCustom({
   onRead,
   onLoad,
   onError,
+  /* `play` (hairline >= 0.5) needs the figure's tour; not wired for skill-made figures yet, so keep it off the div */
+  play: _play,
   style,
   ...rest
 }) {
