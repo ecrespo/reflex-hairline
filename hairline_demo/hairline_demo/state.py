@@ -56,6 +56,7 @@ class PlaygroundState(rx.State):
     figure: str = "terrain"
     caption: str = "rest"
     reads: int = 0
+    play: bool = False
     palette: str = "hairline"
     stroke: float = 0.9
     width: int = 520
@@ -81,6 +82,10 @@ class PlaygroundState(rx.State):
     def read(self, text: str):
         self.caption = text
         self.reads += 1
+
+    @rx.event
+    def set_play(self, value: bool):
+        self.play = bool(value)
 
     @rx.event
     def set_palette(self, value: str | list[str]):
@@ -159,6 +164,8 @@ class PlaygroundCode(rx.State):
             args.append(f'palette="{pg.palette}"')
         elif pg.palette == "custom":
             args += [f'plate="{pg.plate}"', f'hi="{pg.hi}"', f'edge="{pg.edge}"', f'mid="{pg.mid}"', f'lo="{pg.lo}"']
+        if pg.play:
+            args.append("play=True")
         if pg.stroke != 0.9:
             args.append(f"stroke={pg.stroke:g}")
         args.append(f'width="{pg.width}px"')
