@@ -21,7 +21,7 @@ keywords = [
     "interactive",
 ]
 
-dependencies = ["reflex>=0.9.12"]
+dependencies = ["reflex>=0.9.13"]
 
 classifiers = [
     "Development Status :: 4 - Beta",
