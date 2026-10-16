@@ -58,7 +58,7 @@ resolution-markers = [
     "python_full_version >= '3.11'",
 ]
 dependencies = [
-    { name = "typing-extensions", marker = "python_full_version == '3.11.*'" },
+    { name = "typing-extensions", marker = "python_full_version < '3.12'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a8/f2/8d2dd8276ca05e1f5157b6a0d34efb2f585f47a0fbed61e8aad04b221f0b/bidict-0.24.1.tar.gz", hash = "sha256:4dca6c17f0b01700e9f24359daa5ebabf7be022d99f4cb2a257b6af2a5076c88", size = 30818, upload-time = "2026-08-25T23:45:52.214Z" }
 wheels = [
@@ -392,7 +392,7 @@ name = "exceptiongroup"
 version = "1.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
+    { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/50/79/66800aadf48771f6b62f7eb014e352e5d06856655206165d775e675a02c9/exceptiongroup-1.3.1.tar.gz", hash = "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219", size = 30371, upload-time = "2025-11-21T23:01:54.787Z" }
 wheels = [
@@ -867,7 +867,7 @@ wheels = [
 
 [[package]]
 name = "reflex"
-version = "0.9.12"
+version = "0.9.13"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -897,14 +897,14 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "wrapt" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ee/c0/becf3eb71b679f64e125493916770d7d27adda4e535a3ab334a0ac52aa21/reflex-0.9.12.tar.gz", hash = "sha256:e0bdee140f69ae67b066ff27420a96d253bda0f18af2a3cfca995f6309fff4f6", size = 261462, upload-time = "2026-09-22T00:53:09.167Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c1/3f/ff57a6892ef382ddd2ed94d41743e30f0dae164916f5ddcfb89bbaf2f318/reflex-0.9.13.tar.gz", hash = "sha256:7c84e846434f578d667ceba049cdb94a8b91996ab4e2f119b29e48bd5a6a5111", size = 261572, upload-time = "2026-10-09T01:14:05.263Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/08/7eb8a1f37bc8d49821d3fd9fcc748de826daad03c363062c17cdac15e82b/reflex-0.9.12-py3-none-any.whl", hash = "sha256:2caf11df1325938db9aa1ebe55dcd2ed0d51226aeab3a67b04d053760ca58748", size = 305626, upload-time = "2026-09-22T00:53:07.571Z" },
+    { url = "https://files.pythonhosted.org/packages/26/04/ae64e8122ea873e8d6cfac282e1c91712e973651e3e4b38de733ee8ce56d/reflex-0.9.13-py3-none-any.whl", hash = "sha256:0f35f88290d8451558885e6f83ca05211147870f11b20cac1c760773d1200301", size = 305639, upload-time = "2026-10-09T01:14:03.785Z" },
 ]
 
 [[package]]
 name = "reflex-base"
-version = "0.9.12"
+version = "0.9.13"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
@@ -912,9 +912,9 @@ dependencies = [
     { name = "rich" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8b/1b/1d8899904a71b0c2513687bad52489c01aea4426f0937582ae367ab15748/reflex_base-0.9.12.tar.gz", hash = "sha256:2d6fdaa821e64c074703e00aa1edb62fff4e494a622da5ad0f396a161673a452", size = 352656, upload-time = "2026-09-22T00:50:41.694Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ba/d1/28f1718effc9baf84df9a43e945b4772718a968a41d6d5fc564f86c60424/reflex_base-0.9.13.tar.gz", hash = "sha256:7a0c1389ec104b1ba414c2eba1cf84d902a78db8f270b3128c5235e4182f711d", size = 352771, upload-time = "2026-10-09T01:01:29.297Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/16/57/a1f7cba3783687ad0c7c16d1c73660ba8bab1afe257859ebb9d37e5783cc/reflex_base-0.9.12-py3-none-any.whl", hash = "sha256:f2e17a5d3fb9823e3a770951e87b424a26d17d8690348023db16df0be37dae1f", size = 386595, upload-time = "2026-09-22T00:50:40.124Z" },
+    { url = "https://files.pythonhosted.org/packages/17/ea/ebe9749a90d734bd59f67f4de526cec24f359bd1520ce05e5b9555aab60a/reflex_base-0.9.13-py3-none-any.whl", hash = "sha256:b4cb9d5bc0460753876544667e1473ee0549ddd9ce61c655c942070e05197141", size = 386598, upload-time = "2026-10-09T01:01:27.837Z" },
 ]
 
 [[package]]
@@ -1105,7 +1105,7 @@ dev = [
 requires-dist = [
     { name = "build", marker = "extra == 'dev'" },
     { name = "pytest", marker = "extra == 'dev'" },
-    { name = "reflex", specifier = ">=0.9.12" },
+    { name = "reflex", specifier = ">=0.9.13" },
     { name = "twine", marker = "extra == 'dev'" },
 ]
 provides-extras = ["dev"]
