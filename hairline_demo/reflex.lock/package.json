@@ -6,7 +6,7 @@
     "export": "react-router build"
   },
   "dependencies": {
-    "@lucasmarkes/hairline": "0.3.0",
+    "@lucasmarkes/hairline": "0.5.1",
     "@radix-ui/themes": "3.3.0",
     "@react-router/node": "8.4.0",
     "isbot": "5.2.2",

@@ -49,6 +49,12 @@ FigureId: TypeAlias = Literal[
     "drawer",
     "basket",
     "plot",
+    "hub",
+    "relay",
+    "settle",
+    "format",
+    "rebuild",
+    "stack",
 ]
 LIGHT: dict[str, str]
 "Hairline's own light palette, as the six public custom properties."
@@ -90,6 +96,7 @@ class HairlineBase(rx.Component):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -133,6 +140,7 @@ class HairlineBase(rx.Component):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -182,6 +190,7 @@ class Riffle(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -225,6 +234,7 @@ class Riffle(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -271,6 +281,7 @@ class Terrain(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -314,6 +325,7 @@ class Terrain(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -360,6 +372,7 @@ class Exploded(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -403,6 +416,7 @@ class Exploded(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -449,6 +463,7 @@ class Phosphor(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -492,6 +507,7 @@ class Phosphor(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -538,6 +554,7 @@ class Slow(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -581,6 +598,7 @@ class Slow(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -627,6 +645,7 @@ class Turntable(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -670,6 +689,7 @@ class Turntable(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -716,6 +736,7 @@ class Keyboard(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -759,6 +780,7 @@ class Keyboard(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -805,6 +827,7 @@ class Elevator(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -848,6 +871,7 @@ class Elevator(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -894,6 +918,7 @@ class Phone(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -937,6 +962,7 @@ class Phone(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -983,6 +1009,7 @@ class Laptop(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1026,6 +1053,7 @@ class Laptop(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1072,6 +1100,7 @@ class Terminal(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1115,6 +1144,7 @@ class Terminal(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1161,6 +1191,7 @@ class Cabinet(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1204,6 +1235,7 @@ class Cabinet(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1250,6 +1282,7 @@ class Branches(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1293,6 +1326,7 @@ class Branches(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1339,6 +1373,7 @@ class Vault(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1382,6 +1417,7 @@ class Vault(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1428,6 +1464,7 @@ class Lockers(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1471,6 +1508,7 @@ class Lockers(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1517,6 +1555,7 @@ class Padlock(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1560,6 +1599,7 @@ class Padlock(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1606,6 +1646,7 @@ class Patch(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1649,6 +1690,7 @@ class Patch(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1695,6 +1737,7 @@ class Dish(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1738,6 +1781,7 @@ class Dish(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1784,6 +1828,7 @@ class Router(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1827,6 +1872,7 @@ class Router(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1873,6 +1919,7 @@ class Loupe(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -1916,6 +1963,7 @@ class Loupe(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -1962,6 +2010,7 @@ class Sieve(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2005,6 +2054,7 @@ class Sieve(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2051,6 +2101,7 @@ class Rail(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2094,6 +2145,7 @@ class Rail(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2140,6 +2192,7 @@ class Plug(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2183,6 +2236,7 @@ class Plug(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2229,6 +2283,7 @@ class Query(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2272,6 +2327,7 @@ class Query(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2318,6 +2374,7 @@ class Drawer(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2361,6 +2418,7 @@ class Drawer(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2407,6 +2465,7 @@ class Basket(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2450,6 +2509,7 @@ class Basket(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2496,6 +2556,7 @@ class Plot(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2539,6 +2600,553 @@ class Plot(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
+            style: The style of the component.
+            key: A unique key for the component.
+            id: The id for the component.
+            ref: The Var to pass as the ref to the component.
+            class_name: The class name for the component.
+            custom_attrs: Attributes passed directly to the component.
+            on_focus: Fired when the element (or some element inside of it) receives focus. For example, it is called when the user clicks on a text input.
+            on_blur: Fired when focus has left the element (or left some element inside of it). For example, it is called when the user clicks outside of a focused text input.
+            on_click: Fired when the user clicks on an element. For example, it's called when the user clicks on a button.
+            on_context_menu: Fired when the user right-clicks on an element.
+            on_double_click: Fired when the user double-clicks on an element.
+            on_mouse_down: Fired when the user presses a mouse button on an element.
+            on_mouse_enter: Fired when the mouse pointer enters the element.
+            on_mouse_leave: Fired when the mouse pointer leaves the element.
+            on_mouse_move: Fired when the mouse pointer moves over the element.
+            on_mouse_out: Fired when the mouse pointer moves out of the element.
+            on_mouse_over: Fired when the mouse pointer moves onto the element.
+            on_mouse_up: Fired when the user releases a mouse button on an element.
+            on_scroll: Fired when the user scrolls the element.
+            on_scroll_end: Fired when scrolling ends on the element.
+            on_mount: Fired when the component is mounted to the page.
+            on_unmount: Fired when the component is removed from the page. Only called during navigation, not on page refresh.
+            on_read: The figure's caption each time it changes ("03", "gap 28.0", "rate 0.20×"); fired once at mount.
+            **props: Props, events and styles.
+
+        Returns:
+            The component."""
+        ...
+
+class Hub(HairlineBase):
+    @classmethod
+    def create(
+        cls,
+        *children,
+        plate: Any | None = None,
+        hi: Any | None = None,
+        edge: Any | None = None,
+        mid: Any | None = None,
+        lo: Any | None = None,
+        stroke: Any | None = None,
+        palette: Any | None = None,
+        intensity: Var[float] | float | None = None,
+        theme: Literal["auto", "dark", "light"]
+        | Var[Literal["auto", "dark", "light"]]
+        | None = None,
+        label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
+        style: Sequence[Mapping[str, Any]]
+        | Mapping[str, Any]
+        | Var[Mapping[str, Any]]
+        | Breakpoints
+        | None = None,
+        key: Any | None = None,
+        id: Any | None = None,
+        ref: Var | None = None,
+        class_name: Any | None = None,
+        custom_attrs: dict[str, Any | Var] | None = None,
+        on_blur: EventType[()] | None = None,
+        on_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_context_menu: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_double_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_focus: EventType[()] | None = None,
+        on_mount: EventType[()] | None = None,
+        on_mouse_down: EventType[()] | None = None,
+        on_mouse_enter: EventType[()] | None = None,
+        on_mouse_leave: EventType[()] | None = None,
+        on_mouse_move: EventType[()] | None = None,
+        on_mouse_out: EventType[()] | None = None,
+        on_mouse_over: EventType[()] | None = None,
+        on_mouse_up: EventType[()] | None = None,
+        on_read: EventType[()] | EventType[str] | None = None,
+        on_scroll: EventType[()] | None = None,
+        on_scroll_end: EventType[()] | None = None,
+        on_unmount: EventType[()] | None = None,
+        **props,
+    ) -> Hub:
+        """Create the figure.
+
+        Args:
+            *children: Ignored: a figure draws its own content.
+            plate: ``--hairline-plate``, the fill of every plate; match the background.
+            hi: ``--hairline-hi``, the stroke of what is lit.
+            edge: ``--hairline-edge``, silhouettes.
+            mid: ``--hairline-mid``, every other stroke.
+            lo: ``--hairline-lo``, what recedes.
+            stroke: ``--hairline-stroke``, stroke width in CSS pixels (default 0.9).
+            palette: ``"light"``, ``"dark"``, ``"radix"``, ``"radix-accent"`` or a dict (see :func:`tokens`).
+            intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
+            theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
+            label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
+            style: The style of the component.
+            key: A unique key for the component.
+            id: The id for the component.
+            ref: The Var to pass as the ref to the component.
+            class_name: The class name for the component.
+            custom_attrs: Attributes passed directly to the component.
+            on_focus: Fired when the element (or some element inside of it) receives focus. For example, it is called when the user clicks on a text input.
+            on_blur: Fired when focus has left the element (or left some element inside of it). For example, it is called when the user clicks outside of a focused text input.
+            on_click: Fired when the user clicks on an element. For example, it's called when the user clicks on a button.
+            on_context_menu: Fired when the user right-clicks on an element.
+            on_double_click: Fired when the user double-clicks on an element.
+            on_mouse_down: Fired when the user presses a mouse button on an element.
+            on_mouse_enter: Fired when the mouse pointer enters the element.
+            on_mouse_leave: Fired when the mouse pointer leaves the element.
+            on_mouse_move: Fired when the mouse pointer moves over the element.
+            on_mouse_out: Fired when the mouse pointer moves out of the element.
+            on_mouse_over: Fired when the mouse pointer moves onto the element.
+            on_mouse_up: Fired when the user releases a mouse button on an element.
+            on_scroll: Fired when the user scrolls the element.
+            on_scroll_end: Fired when scrolling ends on the element.
+            on_mount: Fired when the component is mounted to the page.
+            on_unmount: Fired when the component is removed from the page. Only called during navigation, not on page refresh.
+            on_read: The figure's caption each time it changes ("03", "gap 28.0", "rate 0.20×"); fired once at mount.
+            **props: Props, events and styles.
+
+        Returns:
+            The component."""
+        ...
+
+class Relay(HairlineBase):
+    @classmethod
+    def create(
+        cls,
+        *children,
+        plate: Any | None = None,
+        hi: Any | None = None,
+        edge: Any | None = None,
+        mid: Any | None = None,
+        lo: Any | None = None,
+        stroke: Any | None = None,
+        palette: Any | None = None,
+        intensity: Var[float] | float | None = None,
+        theme: Literal["auto", "dark", "light"]
+        | Var[Literal["auto", "dark", "light"]]
+        | None = None,
+        label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
+        style: Sequence[Mapping[str, Any]]
+        | Mapping[str, Any]
+        | Var[Mapping[str, Any]]
+        | Breakpoints
+        | None = None,
+        key: Any | None = None,
+        id: Any | None = None,
+        ref: Var | None = None,
+        class_name: Any | None = None,
+        custom_attrs: dict[str, Any | Var] | None = None,
+        on_blur: EventType[()] | None = None,
+        on_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_context_menu: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_double_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_focus: EventType[()] | None = None,
+        on_mount: EventType[()] | None = None,
+        on_mouse_down: EventType[()] | None = None,
+        on_mouse_enter: EventType[()] | None = None,
+        on_mouse_leave: EventType[()] | None = None,
+        on_mouse_move: EventType[()] | None = None,
+        on_mouse_out: EventType[()] | None = None,
+        on_mouse_over: EventType[()] | None = None,
+        on_mouse_up: EventType[()] | None = None,
+        on_read: EventType[()] | EventType[str] | None = None,
+        on_scroll: EventType[()] | None = None,
+        on_scroll_end: EventType[()] | None = None,
+        on_unmount: EventType[()] | None = None,
+        **props,
+    ) -> Relay:
+        """Create the figure.
+
+        Args:
+            *children: Ignored: a figure draws its own content.
+            plate: ``--hairline-plate``, the fill of every plate; match the background.
+            hi: ``--hairline-hi``, the stroke of what is lit.
+            edge: ``--hairline-edge``, silhouettes.
+            mid: ``--hairline-mid``, every other stroke.
+            lo: ``--hairline-lo``, what recedes.
+            stroke: ``--hairline-stroke``, stroke width in CSS pixels (default 0.9).
+            palette: ``"light"``, ``"dark"``, ``"radix"``, ``"radix-accent"`` or a dict (see :func:`tokens`).
+            intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
+            theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
+            label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
+            style: The style of the component.
+            key: A unique key for the component.
+            id: The id for the component.
+            ref: The Var to pass as the ref to the component.
+            class_name: The class name for the component.
+            custom_attrs: Attributes passed directly to the component.
+            on_focus: Fired when the element (or some element inside of it) receives focus. For example, it is called when the user clicks on a text input.
+            on_blur: Fired when focus has left the element (or left some element inside of it). For example, it is called when the user clicks outside of a focused text input.
+            on_click: Fired when the user clicks on an element. For example, it's called when the user clicks on a button.
+            on_context_menu: Fired when the user right-clicks on an element.
+            on_double_click: Fired when the user double-clicks on an element.
+            on_mouse_down: Fired when the user presses a mouse button on an element.
+            on_mouse_enter: Fired when the mouse pointer enters the element.
+            on_mouse_leave: Fired when the mouse pointer leaves the element.
+            on_mouse_move: Fired when the mouse pointer moves over the element.
+            on_mouse_out: Fired when the mouse pointer moves out of the element.
+            on_mouse_over: Fired when the mouse pointer moves onto the element.
+            on_mouse_up: Fired when the user releases a mouse button on an element.
+            on_scroll: Fired when the user scrolls the element.
+            on_scroll_end: Fired when scrolling ends on the element.
+            on_mount: Fired when the component is mounted to the page.
+            on_unmount: Fired when the component is removed from the page. Only called during navigation, not on page refresh.
+            on_read: The figure's caption each time it changes ("03", "gap 28.0", "rate 0.20×"); fired once at mount.
+            **props: Props, events and styles.
+
+        Returns:
+            The component."""
+        ...
+
+class Settle(HairlineBase):
+    @classmethod
+    def create(
+        cls,
+        *children,
+        plate: Any | None = None,
+        hi: Any | None = None,
+        edge: Any | None = None,
+        mid: Any | None = None,
+        lo: Any | None = None,
+        stroke: Any | None = None,
+        palette: Any | None = None,
+        intensity: Var[float] | float | None = None,
+        theme: Literal["auto", "dark", "light"]
+        | Var[Literal["auto", "dark", "light"]]
+        | None = None,
+        label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
+        style: Sequence[Mapping[str, Any]]
+        | Mapping[str, Any]
+        | Var[Mapping[str, Any]]
+        | Breakpoints
+        | None = None,
+        key: Any | None = None,
+        id: Any | None = None,
+        ref: Var | None = None,
+        class_name: Any | None = None,
+        custom_attrs: dict[str, Any | Var] | None = None,
+        on_blur: EventType[()] | None = None,
+        on_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_context_menu: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_double_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_focus: EventType[()] | None = None,
+        on_mount: EventType[()] | None = None,
+        on_mouse_down: EventType[()] | None = None,
+        on_mouse_enter: EventType[()] | None = None,
+        on_mouse_leave: EventType[()] | None = None,
+        on_mouse_move: EventType[()] | None = None,
+        on_mouse_out: EventType[()] | None = None,
+        on_mouse_over: EventType[()] | None = None,
+        on_mouse_up: EventType[()] | None = None,
+        on_read: EventType[()] | EventType[str] | None = None,
+        on_scroll: EventType[()] | None = None,
+        on_scroll_end: EventType[()] | None = None,
+        on_unmount: EventType[()] | None = None,
+        **props,
+    ) -> Settle:
+        """Create the figure.
+
+        Args:
+            *children: Ignored: a figure draws its own content.
+            plate: ``--hairline-plate``, the fill of every plate; match the background.
+            hi: ``--hairline-hi``, the stroke of what is lit.
+            edge: ``--hairline-edge``, silhouettes.
+            mid: ``--hairline-mid``, every other stroke.
+            lo: ``--hairline-lo``, what recedes.
+            stroke: ``--hairline-stroke``, stroke width in CSS pixels (default 0.9).
+            palette: ``"light"``, ``"dark"``, ``"radix"``, ``"radix-accent"`` or a dict (see :func:`tokens`).
+            intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
+            theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
+            label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
+            style: The style of the component.
+            key: A unique key for the component.
+            id: The id for the component.
+            ref: The Var to pass as the ref to the component.
+            class_name: The class name for the component.
+            custom_attrs: Attributes passed directly to the component.
+            on_focus: Fired when the element (or some element inside of it) receives focus. For example, it is called when the user clicks on a text input.
+            on_blur: Fired when focus has left the element (or left some element inside of it). For example, it is called when the user clicks outside of a focused text input.
+            on_click: Fired when the user clicks on an element. For example, it's called when the user clicks on a button.
+            on_context_menu: Fired when the user right-clicks on an element.
+            on_double_click: Fired when the user double-clicks on an element.
+            on_mouse_down: Fired when the user presses a mouse button on an element.
+            on_mouse_enter: Fired when the mouse pointer enters the element.
+            on_mouse_leave: Fired when the mouse pointer leaves the element.
+            on_mouse_move: Fired when the mouse pointer moves over the element.
+            on_mouse_out: Fired when the mouse pointer moves out of the element.
+            on_mouse_over: Fired when the mouse pointer moves onto the element.
+            on_mouse_up: Fired when the user releases a mouse button on an element.
+            on_scroll: Fired when the user scrolls the element.
+            on_scroll_end: Fired when scrolling ends on the element.
+            on_mount: Fired when the component is mounted to the page.
+            on_unmount: Fired when the component is removed from the page. Only called during navigation, not on page refresh.
+            on_read: The figure's caption each time it changes ("03", "gap 28.0", "rate 0.20×"); fired once at mount.
+            **props: Props, events and styles.
+
+        Returns:
+            The component."""
+        ...
+
+class Format(HairlineBase):
+    @classmethod
+    def create(
+        cls,
+        *children,
+        plate: Any | None = None,
+        hi: Any | None = None,
+        edge: Any | None = None,
+        mid: Any | None = None,
+        lo: Any | None = None,
+        stroke: Any | None = None,
+        palette: Any | None = None,
+        intensity: Var[float] | float | None = None,
+        theme: Literal["auto", "dark", "light"]
+        | Var[Literal["auto", "dark", "light"]]
+        | None = None,
+        label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
+        style: Sequence[Mapping[str, Any]]
+        | Mapping[str, Any]
+        | Var[Mapping[str, Any]]
+        | Breakpoints
+        | None = None,
+        key: Any | None = None,
+        id: Any | None = None,
+        ref: Var | None = None,
+        class_name: Any | None = None,
+        custom_attrs: dict[str, Any | Var] | None = None,
+        on_blur: EventType[()] | None = None,
+        on_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_context_menu: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_double_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_focus: EventType[()] | None = None,
+        on_mount: EventType[()] | None = None,
+        on_mouse_down: EventType[()] | None = None,
+        on_mouse_enter: EventType[()] | None = None,
+        on_mouse_leave: EventType[()] | None = None,
+        on_mouse_move: EventType[()] | None = None,
+        on_mouse_out: EventType[()] | None = None,
+        on_mouse_over: EventType[()] | None = None,
+        on_mouse_up: EventType[()] | None = None,
+        on_read: EventType[()] | EventType[str] | None = None,
+        on_scroll: EventType[()] | None = None,
+        on_scroll_end: EventType[()] | None = None,
+        on_unmount: EventType[()] | None = None,
+        **props,
+    ) -> Format:
+        """Create the figure.
+
+        Args:
+            *children: Ignored: a figure draws its own content.
+            plate: ``--hairline-plate``, the fill of every plate; match the background.
+            hi: ``--hairline-hi``, the stroke of what is lit.
+            edge: ``--hairline-edge``, silhouettes.
+            mid: ``--hairline-mid``, every other stroke.
+            lo: ``--hairline-lo``, what recedes.
+            stroke: ``--hairline-stroke``, stroke width in CSS pixels (default 0.9).
+            palette: ``"light"``, ``"dark"``, ``"radix"``, ``"radix-accent"`` or a dict (see :func:`tokens`).
+            intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
+            theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
+            label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
+            style: The style of the component.
+            key: A unique key for the component.
+            id: The id for the component.
+            ref: The Var to pass as the ref to the component.
+            class_name: The class name for the component.
+            custom_attrs: Attributes passed directly to the component.
+            on_focus: Fired when the element (or some element inside of it) receives focus. For example, it is called when the user clicks on a text input.
+            on_blur: Fired when focus has left the element (or left some element inside of it). For example, it is called when the user clicks outside of a focused text input.
+            on_click: Fired when the user clicks on an element. For example, it's called when the user clicks on a button.
+            on_context_menu: Fired when the user right-clicks on an element.
+            on_double_click: Fired when the user double-clicks on an element.
+            on_mouse_down: Fired when the user presses a mouse button on an element.
+            on_mouse_enter: Fired when the mouse pointer enters the element.
+            on_mouse_leave: Fired when the mouse pointer leaves the element.
+            on_mouse_move: Fired when the mouse pointer moves over the element.
+            on_mouse_out: Fired when the mouse pointer moves out of the element.
+            on_mouse_over: Fired when the mouse pointer moves onto the element.
+            on_mouse_up: Fired when the user releases a mouse button on an element.
+            on_scroll: Fired when the user scrolls the element.
+            on_scroll_end: Fired when scrolling ends on the element.
+            on_mount: Fired when the component is mounted to the page.
+            on_unmount: Fired when the component is removed from the page. Only called during navigation, not on page refresh.
+            on_read: The figure's caption each time it changes ("03", "gap 28.0", "rate 0.20×"); fired once at mount.
+            **props: Props, events and styles.
+
+        Returns:
+            The component."""
+        ...
+
+class Rebuild(HairlineBase):
+    @classmethod
+    def create(
+        cls,
+        *children,
+        plate: Any | None = None,
+        hi: Any | None = None,
+        edge: Any | None = None,
+        mid: Any | None = None,
+        lo: Any | None = None,
+        stroke: Any | None = None,
+        palette: Any | None = None,
+        intensity: Var[float] | float | None = None,
+        theme: Literal["auto", "dark", "light"]
+        | Var[Literal["auto", "dark", "light"]]
+        | None = None,
+        label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
+        style: Sequence[Mapping[str, Any]]
+        | Mapping[str, Any]
+        | Var[Mapping[str, Any]]
+        | Breakpoints
+        | None = None,
+        key: Any | None = None,
+        id: Any | None = None,
+        ref: Var | None = None,
+        class_name: Any | None = None,
+        custom_attrs: dict[str, Any | Var] | None = None,
+        on_blur: EventType[()] | None = None,
+        on_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_context_menu: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_double_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_focus: EventType[()] | None = None,
+        on_mount: EventType[()] | None = None,
+        on_mouse_down: EventType[()] | None = None,
+        on_mouse_enter: EventType[()] | None = None,
+        on_mouse_leave: EventType[()] | None = None,
+        on_mouse_move: EventType[()] | None = None,
+        on_mouse_out: EventType[()] | None = None,
+        on_mouse_over: EventType[()] | None = None,
+        on_mouse_up: EventType[()] | None = None,
+        on_read: EventType[()] | EventType[str] | None = None,
+        on_scroll: EventType[()] | None = None,
+        on_scroll_end: EventType[()] | None = None,
+        on_unmount: EventType[()] | None = None,
+        **props,
+    ) -> Rebuild:
+        """Create the figure.
+
+        Args:
+            *children: Ignored: a figure draws its own content.
+            plate: ``--hairline-plate``, the fill of every plate; match the background.
+            hi: ``--hairline-hi``, the stroke of what is lit.
+            edge: ``--hairline-edge``, silhouettes.
+            mid: ``--hairline-mid``, every other stroke.
+            lo: ``--hairline-lo``, what recedes.
+            stroke: ``--hairline-stroke``, stroke width in CSS pixels (default 0.9).
+            palette: ``"light"``, ``"dark"``, ``"radix"``, ``"radix-accent"`` or a dict (see :func:`tokens`).
+            intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
+            theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
+            label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
+            style: The style of the component.
+            key: A unique key for the component.
+            id: The id for the component.
+            ref: The Var to pass as the ref to the component.
+            class_name: The class name for the component.
+            custom_attrs: Attributes passed directly to the component.
+            on_focus: Fired when the element (or some element inside of it) receives focus. For example, it is called when the user clicks on a text input.
+            on_blur: Fired when focus has left the element (or left some element inside of it). For example, it is called when the user clicks outside of a focused text input.
+            on_click: Fired when the user clicks on an element. For example, it's called when the user clicks on a button.
+            on_context_menu: Fired when the user right-clicks on an element.
+            on_double_click: Fired when the user double-clicks on an element.
+            on_mouse_down: Fired when the user presses a mouse button on an element.
+            on_mouse_enter: Fired when the mouse pointer enters the element.
+            on_mouse_leave: Fired when the mouse pointer leaves the element.
+            on_mouse_move: Fired when the mouse pointer moves over the element.
+            on_mouse_out: Fired when the mouse pointer moves out of the element.
+            on_mouse_over: Fired when the mouse pointer moves onto the element.
+            on_mouse_up: Fired when the user releases a mouse button on an element.
+            on_scroll: Fired when the user scrolls the element.
+            on_scroll_end: Fired when scrolling ends on the element.
+            on_mount: Fired when the component is mounted to the page.
+            on_unmount: Fired when the component is removed from the page. Only called during navigation, not on page refresh.
+            on_read: The figure's caption each time it changes ("03", "gap 28.0", "rate 0.20×"); fired once at mount.
+            **props: Props, events and styles.
+
+        Returns:
+            The component."""
+        ...
+
+class Stack(HairlineBase):
+    @classmethod
+    def create(
+        cls,
+        *children,
+        plate: Any | None = None,
+        hi: Any | None = None,
+        edge: Any | None = None,
+        mid: Any | None = None,
+        lo: Any | None = None,
+        stroke: Any | None = None,
+        palette: Any | None = None,
+        intensity: Var[float] | float | None = None,
+        theme: Literal["auto", "dark", "light"]
+        | Var[Literal["auto", "dark", "light"]]
+        | None = None,
+        label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
+        style: Sequence[Mapping[str, Any]]
+        | Mapping[str, Any]
+        | Var[Mapping[str, Any]]
+        | Breakpoints
+        | None = None,
+        key: Any | None = None,
+        id: Any | None = None,
+        ref: Var | None = None,
+        class_name: Any | None = None,
+        custom_attrs: dict[str, Any | Var] | None = None,
+        on_blur: EventType[()] | None = None,
+        on_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_context_menu: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_double_click: EventType[()] | EventType[PointerEventInfo] | None = None,
+        on_focus: EventType[()] | None = None,
+        on_mount: EventType[()] | None = None,
+        on_mouse_down: EventType[()] | None = None,
+        on_mouse_enter: EventType[()] | None = None,
+        on_mouse_leave: EventType[()] | None = None,
+        on_mouse_move: EventType[()] | None = None,
+        on_mouse_out: EventType[()] | None = None,
+        on_mouse_over: EventType[()] | None = None,
+        on_mouse_up: EventType[()] | None = None,
+        on_read: EventType[()] | EventType[str] | None = None,
+        on_scroll: EventType[()] | None = None,
+        on_scroll_end: EventType[()] | None = None,
+        on_unmount: EventType[()] | None = None,
+        **props,
+    ) -> Stack:
+        """Create the figure.
+
+        Args:
+            *children: Ignored: a figure draws its own content.
+            plate: ``--hairline-plate``, the fill of every plate; match the background.
+            hi: ``--hairline-hi``, the stroke of what is lit.
+            edge: ``--hairline-edge``, silhouettes.
+            mid: ``--hairline-mid``, every other stroke.
+            lo: ``--hairline-lo``, what recedes.
+            stroke: ``--hairline-stroke``, stroke width in CSS pixels (default 0.9).
+            palette: ``"light"``, ``"dark"``, ``"radix"``, ``"radix-accent"`` or a dict (see :func:`tokens`).
+            intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
+            theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
+            label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2590,6 +3198,7 @@ class _WrapperComponent(HairlineBase):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2633,6 +3242,7 @@ class _WrapperComponent(HairlineBase):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2681,6 +3291,7 @@ class HairlineFigure(_WrapperComponent):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2726,6 +3337,7 @@ class HairlineFigure(_WrapperComponent):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2774,6 +3386,7 @@ class HairlineCustom(_WrapperComponent):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2821,6 +3434,7 @@ class HairlineCustom(_WrapperComponent):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -2891,6 +3505,12 @@ class Hairline(rx.ComponentNamespace):
     drawer = staticmethod(Drawer.create)
     basket = staticmethod(Basket.create)
     plot = staticmethod(Plot.create)
+    hub = staticmethod(Hub.create)
+    relay = staticmethod(Relay.create)
+    settle = staticmethod(Settle.create)
+    format = staticmethod(Format.create)
+    rebuild = staticmethod(Rebuild.create)
+    stack = staticmethod(Stack.create)
     figure = staticmethod(HairlineFigure.create)
     custom = staticmethod(HairlineCustom.create)
     empty_state = staticmethod(empty_state)
@@ -2920,6 +3540,7 @@ class Hairline(rx.ComponentNamespace):
         | Var[Literal["auto", "dark", "light"]]
         | None = None,
         label: Var[str] | str | None = None,
+        play: Var[bool] | bool | None = None,
         style: Sequence[Mapping[str, Any]]
         | Mapping[str, Any]
         | Var[Mapping[str, Any]]
@@ -2965,6 +3586,7 @@ class Hairline(rx.ComponentNamespace):
             intensity: How strongly the figure answers the pointer, from 0 (subtle) to 1 (strong). Default 0.5.
             theme: "auto" follows the page (Reflex color mode included), or force "light" / "dark".
             label: The accessible name. Each figure has a default English description.
+            play: Walk the figure through its answer on its own, in a loop, until the pointer or focus arrives; it resumes after they leave. Under prefers-reduced-motion the figure rests. Default False.
             style: The style of the component.
             key: A unique key for the component.
             id: The id for the component.
@@ -3022,6 +3644,12 @@ query = Query.create
 drawer = Drawer.create
 basket = Basket.create
 plot = Plot.create
+hub = Hub.create
+relay = Relay.create
+settle = Settle.create
+format = Format.create
+rebuild = Rebuild.create
+stack = Stack.create
 figure = HairlineFigure.create
 custom = HairlineCustom.create
 __all__ = [
@@ -3045,10 +3673,12 @@ __all__ = [
     "Exploded",
     "FigureId",
     "FigureInfo",
+    "Format",
     "Hairline",
     "HairlineBase",
     "HairlineCustom",
     "HairlineFigure",
+    "Hub",
     "Keyboard",
     "Laptop",
     "Lockers",
@@ -3061,10 +3691,14 @@ __all__ = [
     "Plug",
     "Query",
     "Rail",
+    "Rebuild",
+    "Relay",
     "Riffle",
     "Router",
+    "Settle",
     "Sieve",
     "Slow",
+    "Stack",
     "Terminal",
     "Terrain",
     "Turntable",
@@ -3079,7 +3713,9 @@ __all__ = [
     "empty_state",
     "exploded",
     "figure",
+    "format",
     "hairline",
+    "hub",
     "keyboard",
     "laptop",
     "lockers",
@@ -3092,10 +3728,14 @@ __all__ = [
     "plug",
     "query",
     "rail",
+    "rebuild",
+    "relay",
     "riffle",
     "router",
+    "settle",
     "sieve",
     "slow",
+    "stack",
     "terminal",
     "terrain",
     "tokens",

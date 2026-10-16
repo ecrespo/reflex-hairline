@@ -228,7 +228,7 @@ def gallery() -> rx.Component:
             columns=rx.breakpoints(initial="1", sm="2", lg="3"),
             spacing="6",
         ),
-        title="Twenty-seven isometric line figures that answer the pointer",
+        title="Thirty-three isometric line figures that answer the pointer",
         lede=(
             "Hairline's figures as Reflex components. Move the pointer over any of them. "
             "The slider in the bar sets intensity for all of them, the switch sets the theme, "
@@ -290,6 +290,7 @@ def playground() -> rx.Component:
                 figure=PlaygroundState.figure,
                 intensity=DemoState.intensity,
                 theme=DemoState.theme,
+                play=PlaygroundState.play,
                 on_read=PlaygroundState.read,
                 plate=PlaygroundState.tok["plate"],
                 hi=PlaygroundState.tok["hi"],
@@ -355,6 +356,19 @@ def playground() -> rx.Component:
             ),
         ),
         rx.separator(),
+        labelled(
+            "play",
+            rx.hstack(
+                rx.switch(checked=PlaygroundState.play, on_change=PlaygroundState.set_play, size="1"),
+                rx.text(
+                    "Walks the figure through its answer in a loop until the pointer arrives. Rests under reduced motion.",
+                    size="1",
+                    color=rx.color("gray", 10),
+                ),
+                align="center",
+                spacing="2",
+            ),
+        ),
         labelled(
             "palette",
             rx.segmented_control.root(
@@ -431,7 +445,7 @@ def playground() -> rx.Component:
             width="100%",
         ),
         title="Playground",
-        lede="One figure, every option. The figure is picked by a state var through hairline.figure(), so switching remounts it; intensity, theme and the palette reach the running figure without a remount.",
+        lede="One figure, every option. The figure is picked by a state var through hairline.figure(), so switching remounts it; intensity, theme, play and the palette reach the running figure without a remount.",
     )
 
 
@@ -463,7 +477,7 @@ def theming() -> rx.Component:
     swatch_tiles = [
         rx.box(
             plate(
-                hairline.figure(figure=FIGURE_IDS[(i * 4) % 27], intensity=DemoState.intensity, **props),
+                hairline.figure(figure=FIGURE_IDS[(i * 4) % len(FIGURE_IDS)], intensity=DemoState.intensity, **props),
                 background=bg,
             ),
             mono(name, margin_top="8px", color=rx.color("gray", 11)),
@@ -762,6 +776,13 @@ def reference() -> rx.Component:
             "auto follows the page: class dark / data-theme=dark on an ancestor, then color-scheme.",
         ),
         ("label", "str", "a description", "The accessible name (aria-label)."),
+        (
+            "play",
+            "bool | Var[bool]",
+            "False",
+            "Walks the figure through its answer on its own, in a loop, until the pointer or focus arrives. "
+            "Rests under prefers-reduced-motion. Ignored by hairline.custom for now.",
+        ),
         ("on_read", "EventHandler[str]", "", "The caption each time it changes; once at mount with the rest caption."),
         (
             "plate / hi / edge / mid / lo",
@@ -776,7 +797,12 @@ def reference() -> rx.Component:
             "",
             "A base palette for the shortcuts above.",
         ),
-        ("figure (hairline.figure)", "str | Var[str]", '"terrain"', "Which of the 27 to draw; changing it remounts."),
+        (
+            "figure (hairline.figure)",
+            "str | Var[str]",
+            '"terrain"',
+            f"Which of the {len(FIGURE_IDS)} to draw; changing it remounts.",
+        ),
         (
             "src / code (hairline.custom)",
             "str | Var[str]",
