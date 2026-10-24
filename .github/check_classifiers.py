@@ -1,8 +1,8 @@
 """Fail if pyproject.toml uses a classifier PyPI would reject."""
 
 import sys
-
 import tomllib
+
 from trove_classifiers import classifiers
 
 with open("pyproject.toml", "rb") as f:
