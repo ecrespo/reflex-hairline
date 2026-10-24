@@ -12,6 +12,8 @@ uv add reflex-hairline
 
 Reflex installs the npm package (`@lucasmarkes/hairline@0.5.1`) on the next `reflex run`; there is nothing else to set up.
 
+Requires **Python 3.11+** and **Reflex 0.10.0** or newer (Reflex 0.10 dropped Python 3.10).
+
 ## Quick start
 
 ```python
@@ -192,12 +194,17 @@ Pages: Gallery (all 33 with live `on_read` captions), Playground (every option a
 ```bash
 uv sync                          # editable install + dev tools
 uv run pytest                    # unit tests
-uv run reflex component build    # .pyi stubs + sdist/wheel in dist/
+uv run python -m reflex_base.utils.pyi_generator custom_components/reflex_hairline  # regenerate .pyi stubs
+uv build                         # sdist + wheel in dist/
 ```
+
+Reflex 0.10 removed the `reflex component` CLI (`init`/`build`/`publish`/`share`). Stubs are now generated with
+Reflex's `pyi_generator` module and the package is built with plain `uv build`; regenerate `hairline.pyi` whenever a
+component's props change.
 
 ### CI and releases
 
-- `CI (code quality)`: ruff lint/format, pytest on Python 3.10–3.13, demo `reflex compile`, build + `twine check`.
+- `CI (code quality)`: ruff lint/format, pytest on Python 3.11–3.13, demo `reflex compile`, build + `twine check`.
 - `Security`: gitleaks, bandit, pip-audit, dependency review (PRs) and CodeQL; also weekly.
 - `Release`: push a tag `vX.Y.Z` matching `version` in `pyproject.toml`. It re-runs both suites, builds,
   checks the tag is on `main`, publishes to PyPI, installs it back from PyPI and creates the GitHub Release.
